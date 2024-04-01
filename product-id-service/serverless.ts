@@ -39,4 +39,4 @@ const serverlessConfiguration: AWS = {
 
 module.exports = serverlessConfiguration;
 
-// in process
+// in process of task 4
