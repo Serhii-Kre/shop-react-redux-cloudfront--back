@@ -7,8 +7,6 @@ import products from '@mocks/products';
 
 
 const hello: ValidatedEventAPIGatewayProxyEvent<any> = async (event: any) => {
-//  const { body } = event;
-//  const test = process.env.PRODUCTS_TABLE
 
 for (const product of products) {
   const putProductCommand = new PutCommand({
