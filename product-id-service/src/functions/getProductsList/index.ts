@@ -5,9 +5,10 @@ export default {
   events: [
     {
       http: {
-        method: 'post',
-        path: 'hello'
-        },
+        method: 'get',
+        path: 'products',
+        cors: true
+      },
     },
   ],
 };
