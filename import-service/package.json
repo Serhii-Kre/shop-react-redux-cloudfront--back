@@ -1,22 +1,22 @@
 {
-  "name": "product-id-service",
+  "name": "@my-store-app/import-service",
   "version": "1.0.0",
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "sls deploy"
   },
   "engines": {
     "node": ">=14.15.0"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.540.0",
-    "@aws-sdk/client-sns": "^3.569.0",
-    "@aws-sdk/lib-dynamodb": "^3.540.0",
+    "@aws-sdk/client-s3": "^3.540.0",
+    "@aws-sdk/client-sqs": "^3.564.0",
+    "@aws-sdk/s3-request-presigner": "^3.540.0",
     "@middy/core": "^3.4.0",
     "@middy/http-json-body-parser": "^3.4.0",
-    "joi": "^17.12.3",
-    "uuid": "^9.0.1"
+    "csv-parser": "^3.0.0",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "@serverless/typescript": "^3.0.0",
@@ -25,6 +25,7 @@
     "esbuild": "^0.14.11",
     "json-schema-to-ts": "^1.5.0",
     "serverless": "^3.0.0",
+    "serverless-auto-swagger": "^2.12.0",
     "serverless-esbuild": "^1.23.3",
     "ts-node": "^10.4.0",
     "tsconfig-paths": "^3.9.0",

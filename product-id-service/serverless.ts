@@ -4,6 +4,7 @@ import hello from '@functions/hello';
 import getProductsById from '@functions/getProductsById';
 import getProductsList from '@functions/getProductsList';
 import createProduct from '@functions/createProduct';
+import catalogBatchProcess from '@functions/catalogBatchProcess';
 import 'dotenv/config'
 import { resources } from "./resources/index";
 
@@ -25,6 +26,8 @@ const serverlessConfiguration: AWS = {
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
       PRODUCTS_TABLE: process.env.PRODUCTS_TABLE,
       STOCK_TABLE: process.env.STOCK_TABLE,
+      CATALOG_ITEMS_QUEUE: 'catalogItemsQueue',
+      SNS_TOPIC_ARN: { Ref: "createProductTopic" },
     },
     iam: {
       role: {
@@ -42,6 +45,11 @@ const serverlessConfiguration: AWS = {
               'dynamodb:BatchWriteItem'
             ],
             Resource: 'arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/*',
+          },
+          {
+            Effect: "Allow",
+            Action: ["sns:Publish"],
+            Resource: { Ref: "createProductTopic" },
           }
         ]
       }
@@ -49,7 +57,7 @@ const serverlessConfiguration: AWS = {
   },
  
   // import the function via paths
-  functions: { hello, getProductsById, getProductsList, createProduct},
+  functions: { hello, getProductsById, getProductsList, createProduct, catalogBatchProcess},
   resources,
   package: { individually: true },
   custom: {
