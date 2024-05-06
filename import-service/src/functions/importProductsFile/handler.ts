@@ -15,7 +15,7 @@ export const importProductsFile: ValidatedEventAPIGatewayProxyEvent<null> = asyn
     const command = new PutObjectCommand(commandParams);
 
     const presignedURL = await getSignedUrl(client, command, {expiresIn: 3600});
-
+  
     return formatJSONResponse({url: presignedURL})
   } catch (err) {
     if (err.$metadata?.httpStatusCode === 403 || err.$metadata?.httpStatusCode === 404) {
